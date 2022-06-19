@@ -1,16 +1,23 @@
 # XPT2046 Touchscreen Arduino Library
 
 XPT2046_Touchscreen is a library for the XPT2046 resistive touchscreen controllers used on many low cost TFT displays.
+
 The original library can be found here :
+
 https://github.com/PaulStoffregen/XPT2046_Touchscreen
+
 This library is compatible with the original library and did not introduce any breaking changes.
 
 This library contains my addition of calibrated screen coordinates.
+
 It also contains a number of pull requests that were open for several years for the original library.
-- Added ADCs readings (VBat, AuxIn, Temp) #37
-  https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/37/files
--  Fix API parameter types for readData() #27
-https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/27
+
+- Added ADCs readings (VBat, AuxIn, Temp) #37 
+  https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/37
+
+-  Fix API parameter types for readData() #27 
+  https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/27
+
 ![ILI9431Test Example Program](doc/ILI9431Test.jpg)
 
 ## Setup Functions
