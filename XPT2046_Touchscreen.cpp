@@ -36,7 +36,7 @@ bool XPT2046_Touchscreen::begin(SPIClass &wspi)
 	_pspi->begin();
 	pinMode(csPin, OUTPUT);
 	digitalWrite(csPin, HIGH);
-	if (255 != tirqPin) {
+	if (XPT2046_NO_IRQ != tirqPin) {
 		pinMode( tirqPin, INPUT );
 		attachInterrupt(digitalPinToInterrupt(tirqPin), isrPin, FALLING);
 		isrPinptr = this;
@@ -53,7 +53,7 @@ bool XPT2046_Touchscreen::begin(FlexIOSPI &wflexspi)
 	_pflexspi->begin();
 	pinMode(csPin, OUTPUT);
 	digitalWrite(csPin, HIGH);
-	if (255 != tirqPin) {
+	if (XPT2046_NO_IRQ != tirqPin) {
 		pinMode( tirqPin, INPUT );
 		attachInterrupt(digitalPinToInterrupt(tirqPin), isrPin, FALLING);
 		isrPinptr = this;
@@ -178,7 +178,7 @@ void XPT2046_Touchscreen::update()
 		// Serial.println();
 		zraw = 0;
 		if (z < Z_THRESHOLD_INT) { //	if ( !touched ) {
-			if (255 != tirqPin) isrWake = false;
+			if (XPT2046_NO_IRQ != tirqPin) isrWake = false;
 		}
 		return;
 	}

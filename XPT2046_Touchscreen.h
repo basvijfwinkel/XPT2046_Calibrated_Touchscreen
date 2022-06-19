@@ -26,6 +26,8 @@
 #include "Arduino.h"
 #include <SPI.h>
 
+define XPT2046_NO_IRQ 255
+
 #if defined(__IMXRT1062__)
 #if __has_include(<FlexIOSPI.h>)
 	#include <FlexIOSPI.h>
@@ -49,7 +51,7 @@ public:
 
 class XPT2046_Touchscreen {
 public:
-	constexpr XPT2046_Touchscreen(uint8_t cspin, uint8_t tirq=255) : csPin(cspin), tirqPin(tirq) { }
+	constexpr XPT2046_Touchscreen(uint8_t cspin, uint8_t tirq=XPT2046_NO_IRQ) : csPin(cspin), tirqPin(tirq) { }
 	void setCalibration(uint16_t hmin,uint16_t hmax,uint16_t vmin,uint16_t vmax,uint16_t hres,uint16_t vres,uint16_t xyswap);
 	uint16_t calibratedCoord(uint16_t raw, uint16_t axis);
 	uint16_t remap(uint16_t min, uint16_t max, uint16_t res, uint16_t dotoffset, uint16_t returnfield);
