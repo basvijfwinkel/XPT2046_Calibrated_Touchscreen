@@ -64,7 +64,7 @@ public:
 	TS_Point getPoint(bool doUpdateFirst = true);
 	bool tirqTouched();
 	bool touched();
-	void readData(uint16_t *x, uint16_t *y, uint8_t *z);
+	void readData(uint16_t *x, uint16_t *y, uint16_t *z);
 	bool bufferEmpty();
 	uint8_t bufferSize() { return 1; }
 	void setRotation(uint8_t n) { rotation = n % 4; }

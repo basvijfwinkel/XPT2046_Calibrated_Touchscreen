@@ -87,7 +87,7 @@ bool XPT2046_Touchscreen::touched()
 	return (zraw >= Z_THRESHOLD);
 }
 
-void XPT2046_Touchscreen::readData(uint16_t *x, uint16_t *y, uint8_t *z)
+void XPT2046_Touchscreen::readData(int16_t *x, int16_t *y, int16_t *z)
 {
 	update();
 	*x = xraw;
@@ -219,7 +219,7 @@ void XPT2046_Touchscreen::update()
 	}
 }
 
-void XPT2046_Touchscreen::setCalibration(uint16_t hmin,uint16_t hmax,uint16_t vmin,uint16_t vmax,uint16_t hres,uint16_t vres,uint16_t xyswap)
+void XPT2046_Touchscreen::setCalibration(int16_t hmin,int16_t hmax,int16_t vmin,int16_t vmax,int16_t hres,int16_t vres,int16_t xyswap)
 {
     cal_hmin = hmin;
     cal_hmax = hmax;
@@ -231,16 +231,16 @@ void XPT2046_Touchscreen::setCalibration(uint16_t hmin,uint16_t hmax,uint16_t vm
 }
 
 
-uint16_t XPT2046_Touchscreen::calibratedCoord(uint16_t raw, uint16_t axis)
+int16_t XPT2046_Touchscreen::calibratedCoord(int16_t raw, int16_t axis)
 {
-	uint16_t xyswap = cal_xyswap;
+	int16_t xyswap = cal_xyswap;
 	if ((rotation == 0) || (rotation == 2))
 	{
 		 xyswap = ((cal_xyswap==1)?0:1); // invert the x and y axis
  	}
 
-  uint16_t calval;
-	uint16_t min,max,res;
+  int16_t calval;
+	int16_t min,max,res;
   if (((xyswap == 0) && (axis == 1)) ||
 	    ((xyswap == 1) && (axis == 2)))
   {
@@ -258,7 +258,7 @@ uint16_t XPT2046_Touchscreen::calibratedCoord(uint16_t raw, uint16_t axis)
   bool reverse = false;
   if (min > max)
 	{
-		   uint16_t t = min;
+		   int16_t t = min;
 			 min = max;
 			 max = t;
 			 reverse = true;
@@ -271,7 +271,7 @@ uint16_t XPT2046_Touchscreen::calibratedCoord(uint16_t raw, uint16_t axis)
   return calval;
 }
 
-uint16_t XPT2046_Touchscreen::remap(uint16_t min, uint16_t max, uint16_t res, uint16_t dotoffset, uint16_t returnfield)
+int16_t XPT2046_Touchscreen::remap(int16_t min, int16_t max, int16_t res, int16_t dotoffset, int16_t returnfield)
 {
 		 float factorx = (float)((res - dotoffset) - dotoffset) / (abs(((float)max - (float)min)));
 		 int new_min = (((float)(0.0 - (float)dotoffset)) / factorx) + (float)((min>max)?max:min);
