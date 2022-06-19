@@ -52,9 +52,9 @@ public:
 class XPT2046_Touchscreen {
 public:
 	constexpr XPT2046_Touchscreen(uint8_t cspin, uint8_t tirq=XPT2046_NO_IRQ) : csPin(cspin), tirqPin(tirq) { }
-	void setCalibration(uint16_t hmin,uint16_t hmax,uint16_t vmin,uint16_t vmax,uint16_t hres,uint16_t vres,uint16_t xyswap);
-	uint16_t calibratedCoord(uint16_t raw, uint16_t axis);
-	uint16_t remap(uint16_t min, uint16_t max, uint16_t res, uint16_t dotoffset, uint16_t returnfield);
+	void setCalibration(int16_t hmin,int16_t hmax,int16_t vmin,int16_t vmax,int16_t hres,int16_t vres,int16_t xyswap);
+	int16_t calibratedCoord(int16_t raw, int16_t axis);
+	int16_t remap(int16_t min, int16_t max, int16_t res, int16_t dotoffset, int16_t returnfield);
 
 	bool begin(SPIClass &wspi = SPI);
 #if defined(_FLEXIO_SPI_H_)
@@ -64,26 +64,31 @@ public:
 	TS_Point getPoint(bool doUpdateFirst = true);
 	bool tirqTouched();
 	bool touched();
-	void readData(uint16_t *x, uint16_t *y, uint16_t *z);
+	void readData(int16_t *x, int16_t *y, int16_t *z);
 	bool bufferEmpty();
 	uint8_t bufferSize() { return 1; }
 	void setRotation(uint8_t n) { rotation = n % 4; }
+	float getVBat();
+  float getAuxIn();
+  float getTemp();
+  float getTempF();
 // protected:
 	volatile bool isrWake=true;
 
 private:
 	void update();
+	int16_t updateADC(int16_t adc);
 	uint8_t csPin, tirqPin, rotation=1;
 	int16_t xraw=0, yraw=0, zraw=0, xcal=0, ycal=0;
 	uint32_t msraw=0x80000000;
 	SPIClass *_pspi = nullptr;
-	uint16_t cal_hmin   = 0;
-  uint16_t cal_hmax   = 4095;
-  uint16_t cal_vmin   = 0;
-  uint16_t cal_vmax   = 4095;
-  uint16_t cal_hres   = 320;
-  uint16_t cal_vres   = 240;
-  uint16_t cal_xyswap = 0;
+	int16_t cal_hmin   = 0;
+  int16_t cal_hmax   = 4095;
+  int16_t cal_vmin   = 0;
+  int16_t cal_vmax   = 4095;
+  int16_t cal_hres   = 320;
+  int16_t cal_vres   = 240;
+  int16_t cal_xyswap = 0;
 
 #if defined(_FLEXIO_SPI_H_)
 	FlexIOSPI *_pflexspi = nullptr;
