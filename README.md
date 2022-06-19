@@ -1,4 +1,4 @@
-# XPT2046 Touchscreen Arduino Library
+# XPT2046 Touchscreen Arduino Library with calibrated screen coordinates
 
 XPT2046_Touchscreen is a library for the XPT2046 resistive touchscreen controllers used on many low cost TFT displays.
 
@@ -9,6 +9,7 @@ https://github.com/PaulStoffregen/XPT2046_Touchscreen
 This library is compatible with the original library and did not introduce any breaking changes.
 
 This library contains my addition of calibrated screen coordinates.
+With this feature the library will automatically convert the raw touch screen coordinates to display coordinates.
 
 It also contains a number of pull requests that were open for several years for the original library.
 
