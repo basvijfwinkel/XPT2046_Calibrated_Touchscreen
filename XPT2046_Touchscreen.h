@@ -27,6 +27,8 @@
 #include <SPI.h>
 
 define XPT2046_NO_IRQ 255
+define ADC_VREF 2.5F	
+	
 
 #if defined(__IMXRT1062__)
 #if __has_include(<FlexIOSPI.h>)
@@ -68,11 +70,13 @@ public:
 	bool bufferEmpty();
 	uint8_t bufferSize() { return 1; }
 	void setRotation(uint8_t n) { rotation = n % 4; }
+	void setADCVRef(float vref) { adc_vref = vref; }
 	float getVBat();
-  float getAuxIn();
-  float getTemp();
-  float getTempF();
-// protected:
+        float getAuxIn();
+        float getTemp();
+        float getTempF();
+        float getADCVRef();
+	
 	volatile bool isrWake=true;
 
 private:
@@ -83,12 +87,13 @@ private:
 	uint32_t msraw=0x80000000;
 	SPIClass *_pspi = nullptr;
 	int16_t cal_hmin   = 0;
-  int16_t cal_hmax   = 4095;
-  int16_t cal_vmin   = 0;
-  int16_t cal_vmax   = 4095;
-  int16_t cal_hres   = 320;
-  int16_t cal_vres   = 240;
-  int16_t cal_xyswap = 0;
+        int16_t cal_hmax   = 4095;
+        int16_t cal_vmin   = 0;
+        int16_t cal_vmax   = 4095;
+        int16_t cal_hres   = 320;
+        int16_t cal_vres   = 240;
+        int16_t cal_xyswap = 0;
+        float vref         = ADC_VREF;
 
 #if defined(_FLEXIO_SPI_H_)
 	FlexIOSPI *_pflexspi = nullptr;
