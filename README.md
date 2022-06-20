@@ -18,6 +18,12 @@ It also contains a number of pull requests that were open for several years for 
 
 -  Fix API parameter types for readData() #27 
   https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/27
+  This pull request unifies all coordinate variables to int16_t
+
+- TouchTest example to use polling instead of interrupt
+  https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/21
+  This pull request changes the TouchTest.ino sample so that it works without having the interrupt pin connected.
+  This is the case for most wiring diagrams in other tutorials.
 
 ![ILI9431Test Example Program](doc/ILI9431Test.jpg)
 
