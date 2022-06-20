@@ -386,3 +386,8 @@ float XPT2046_Touchscreen::getTempF()
     float Fa = (0.157031041 * adc_vref * data);
     return Fa;    //Resolution of 2.88°F per LSB (per bit)
 }
+
+float XPT2046_Touchscreen::getADCVRef()
+{
+    return adc_vref;
+}
