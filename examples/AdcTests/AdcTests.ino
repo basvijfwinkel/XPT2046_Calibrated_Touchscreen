@@ -17,10 +17,10 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(ts.getVBat());
-  Serial.println(ts.getAuxIn());
-  Serial.println(ts.getTemp());
-  Serial.println(ts.getTempF()); //This value is not taken at the same time, therefor value might not fit the Celsius value
+  Serial.print("VBat:");Serial.println(ts.getVBat()); // connected to GND on some boards
+  Serial.print("AuxIn:");Serial.println(ts.getAuxIn()); // connected to GND on some boards
+  Serial.print("Temp (C):");Serial.println(ts.getTemp());
+  Serial.print("Temp (F):");Serial.println(ts.getTempF()); 
   Serial.println();
 
   delay(1000);
