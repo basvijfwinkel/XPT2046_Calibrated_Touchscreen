@@ -361,6 +361,7 @@ float XPT2046_Touchscreen::getAuxIn()
 
 float XPT2046_Touchscreen::getTemp()
 {
+ /*
     int16_t data = updateADC(ADC_TEMP);
 
     //Calculate temperature using differential temp0 vs temp1
@@ -372,12 +373,16 @@ float XPT2046_Touchscreen::getTemp()
     float dV = float(data) * (vref/4096.0F) * 1000.0F;
     float constants = q / (k * lnN) / 1000.0F; //2.573
     float C = (constants*dV);   //Resolution of 1.6°C per LSB (per bit)
-
+*/
+    float C = (getTempF() - 32.0F) * 0.5556F;
     return C;
 }
 
 float XPT2046_Touchscreen::getTempF()
 {
-    float celsius = getTemp();
-    return (((9.0/5.0) * celsius) + 32);    //Resolution of 2.88°F per LSB (per bit)
+//    float celsius = getTemp();
+//    return (((9.0/5.0) * celsius) + 32);    //Resolution of 2.88°F per LSB (per bit)
+    int16_t data = updateADC(ADC_TEMP);
+    float Fa = (0.157031041 * adc_vref * data);
+    return Fa;    //Resolution of 2.88°F per LSB (per bit)
 }
