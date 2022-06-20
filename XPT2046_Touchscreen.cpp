@@ -383,6 +383,9 @@ float XPT2046_Touchscreen::getTempF()
 //    float celsius = getTemp();
 //    return (((9.0/5.0) * celsius) + 32);    //Resolution of 2.88°F per LSB (per bit)
     int16_t data = updateADC(ADC_TEMP);
+    data = updateADC(ADC_TEMP); // read it twice because the first time, the values might not have stabilized yet.
+	                        // this might happen if getVBat() / getAuxIn() is called before this method.
+	
     float Fa = (0.157031041 * adc_vref * data);
     return Fa;    //Resolution of 2.88°F per LSB (per bit)
 }
