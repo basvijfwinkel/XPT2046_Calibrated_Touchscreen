@@ -93,7 +93,7 @@ private:
         int16_t cal_hres   = 320;
         int16_t cal_vres   = 240;
         int16_t cal_xyswap = 0;
-        float vref         = ADC_VREF;
+        float adc_vref     = ADC_VREF;
 
 #if defined(_FLEXIO_SPI_H_)
 	FlexIOSPI *_pflexspi = nullptr;
