@@ -26,8 +26,8 @@
 #include "Arduino.h"
 #include <SPI.h>
 
-define XPT2046_NO_IRQ 255
-define ADC_VREF 2.5F	
+#define XPT2046_NO_IRQ 255
+#define ADC_VREF 2.5F	
 	
 
 #if defined(__IMXRT1062__)
