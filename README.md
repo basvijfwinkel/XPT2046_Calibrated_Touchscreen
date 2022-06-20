@@ -160,11 +160,18 @@ Using the following functions, you can read the ADCs and they'll return a float:
       ts.getTempF();
   
   The temperature sensor should be working for most displays.
-  My cheap TFT display (ILI3941 red PCB with the text "2.8 TFT SPI 240x320 V1.2" on the back) 
-TODO
-3.1v vref
-      
-      
+  My cheap TFT display (ILI3941 red PCB with the text "2.8 TFT SPI 240x320 V1.2" on the back) has the VREF pin of the XPT2046 controller 
+  linked to 3.1 volt. The display itself is powered with 3.3v.
+  The readings seem to be correct if the VREF is set to 2.5 volt.
+  The VREF is set default to 2.5V but can be changed with setADCVRef().
+
+  The XPT2046 seems to have only 1 ADC converter which seems to be used by VBat, AuxIn and the temperature measurement.
+  Quickly reading those values might not give correct readings on the first try.
+  For the temperature measurement, the library reads the ADC value twice, which seems to solve the issue.
+  An additional read might be needed for getVBat() or getAuxIn().
+
+  My cheap TFT display has the VBat and AuxIn pin connected to the GND of the board.
+  Therefore reading VBat or AuxIn will always return '0'. 
 
 ## Adafruit Library Compatibility
 
