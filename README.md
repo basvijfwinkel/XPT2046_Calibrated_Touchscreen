@@ -15,6 +15,8 @@ It also contains a number of pull requests that were open for several years for 
 
 - Added ADCs readings (VBat, AuxIn, Temp) #37 
   https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/37
+  This adds method to read out the VBat, AuxIn and temperature sensor.
+  Please read the notes in the 'Reading ADCs Info'.
 
 -  Fix API parameter types for readData() #27 
   https://github.com/PaulStoffregen/XPT2046_Touchscreen/pull/27
@@ -152,10 +154,17 @@ The XPT2046 is loaded with different ADC inputs thats can be read
 
 Using the following functions, you can read the ADCs and they'll return a float:
 
-      Serial.println(ts.getVBat());
-      Serial.println(ts.getAuxIn());
-      Serial.println(ts.getTemp());
-      Serial.println(ts.getTempF());
+      ts.getVBat();
+      ts.getAuxIn(;
+      ts.getTemp();
+      ts.getTempF();
+  
+  The temperature sensor should be working for most displays.
+  My cheap TFT display (ILI3941 red PCB with the text "2.8 TFT SPI 240x320 V1.2" on the back) 
+TODO
+3.1v vref
+      
+      
 
 ## Adafruit Library Compatibility
 
