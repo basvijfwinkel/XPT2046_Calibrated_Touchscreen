@@ -53,7 +53,7 @@ public:
 
 class XPT2046_Touchscreen {
 public:
-	constexpr XPT2046_Touchscreen(uint8_t cspin, uint8_t tirq=XPT2046_NO_IRQ) : csPin(cspin), tirqPin(tirq) { }
+	constexpr XPT2046_Touchscreen(uint8_t cspin = 8, uint8_t tirq=XPT2046_NO_IRQ) : csPin(cspin), tirqPin(tirq) { }
 	void setCalibration(int16_t hmin,int16_t hmax,int16_t vmin,int16_t vmax,int16_t hres,int16_t vres,int16_t xyswap);
 	int16_t calibratedCoord(int16_t raw, int16_t axis);
 	int16_t remap(int16_t min, int16_t max, int16_t res, int16_t dotoffset, int16_t returnfield);
